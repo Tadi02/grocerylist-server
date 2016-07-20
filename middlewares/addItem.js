@@ -1,4 +1,4 @@
-var Item = require('../models/Item');
+var Item = require('../models/item');
 
 module.exports = function () {
 
