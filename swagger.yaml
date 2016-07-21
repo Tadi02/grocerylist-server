@@ -1,0 +1,80 @@
+swagger: '2.0'
+
+info:
+  version: "0.1.0"
+  title: GroceryList Server API
+  description: GroceryList Server API documentation
+
+paths:
+  /items:
+    post:
+      operationId: addItem
+      tags:
+        - Item
+      description: Adds a new item to the grocery list.
+      parameters:
+        - name: NewItem
+          in: body
+          description: New item
+          required: true
+          schema:
+            type: object
+            properties:
+              "name":
+                type: string
+              "quantity":
+                type: string
+
+      responses:
+        200:
+          description: Item added
+
+    get:
+      operationId: getItems
+      tags:
+        - Item
+      description: Fetches all items in the grocery list.
+      responses:
+        200:
+          description: Fetched items
+          schema:
+            type: object
+            items:
+               $ref: "#/definitions/GroceryList"
+
+  /items/{id}:
+    delete:
+      operationId: removeItem
+      tags:
+        - Item
+      description: Removes an item from the grocery list.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: Id of the item to remove.
+          required: true
+      responses:
+        200:
+          description: Succesful removal
+
+definitions:
+  GroceryList:
+    type: object
+    properties:
+      "items":
+        type: array
+        items:
+          $ref: "#/definitions/Item"
+
+  Item:
+    type: object
+    properties:
+      "_id":
+        type: string
+      "name":
+        type: string
+      "quantity":
+        type: string
+      "added":
+        type: string

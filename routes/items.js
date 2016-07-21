@@ -11,7 +11,7 @@ module.exports = function (app) {
         returnJsonResponse()
     );
 
-    app.post('/items/add',
+    app.post('/items',
         bodyParser.json(),
         addItem(),
         returnJsonResponse()
